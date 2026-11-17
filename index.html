@@ -410,6 +410,8 @@
 
     .choice-panel {
       width: min(760px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
       background: #0d1426;
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -844,16 +846,16 @@
   <div class="choice-modal" id="contactChoiceModal" aria-hidden="true">
     <div class="choice-panel" role="dialog" aria-modal="true" aria-labelledby="contactChoiceTitle">
       <h3 id="contactChoiceTitle">Choose your interest</h3>
-      <p>Select what you want to build and we will continue the conversation in your preferred channel.</p>
+      <p>Choose a service to start a WhatsApp chat, or select Email Project Enquiry to contact us by email.</p>
 
       <div class="choice-grid">
+        <button type="button" class="choice-option" data-interest="Custom Idea / General Enquiry" data-channel="email">Email Project Enquiry</button>
         <button type="button" class="choice-option" data-interest="Website Development" data-channel="whatsapp">Website Development</button>
         <button type="button" class="choice-option" data-interest="Custom Software Development" data-channel="whatsapp">Custom Software</button>
         <button type="button" class="choice-option" data-interest="AI & Automation" data-channel="whatsapp">AI & Automation</button>
         <button type="button" class="choice-option" data-interest="Mobile Application" data-channel="whatsapp">Mobile App</button>
         <button type="button" class="choice-option" data-interest="UI/UX Design" data-channel="whatsapp">UI/UX Design</button>
         <button type="button" class="choice-option" data-interest="Maintenance & Support" data-channel="whatsapp">Maintenance & Support</button>
-        <button type="button" class="choice-option" data-interest="Custom Idea / General Enquiry" data-channel="email">Email Us</button>
         <button type="button" class="choice-option" data-interest="Custom Idea / General Enquiry" data-channel="whatsapp">Chat on WhatsApp</button>
       </div>
 
