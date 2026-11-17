@@ -708,6 +708,111 @@
     </div>
   </section>
 
+<section class="section" id="enquiry">
+  <div class="container">
+    <div class="section-heading">
+      <span>START A PROJECT</span>
+      <h2>Tell Us About Your Idea</h2>
+      <p>Share your requirements and our team will get in touch.</p>
+    </div>
+
+    <form
+      action="https://formsubmit.co/vexainor.official@gmail.com"
+      method="POST"
+      class="enquiry-form"
+    >
+      <input type="hidden" name="_subject"
+        value="New VEXAINOR Client Enquiry">
+
+      <input type="text" name="_honey"
+        style="display:none">
+
+      <div class="form-grid">
+        <input type="text" name="Name"
+          placeholder="Your Full Name" required>
+
+        <input type="email" name="Email"
+          placeholder="Your Email Address" required>
+
+        <input type="tel" name="WhatsApp"
+          placeholder="WhatsApp Number" required>
+
+        <select name="Service" required>
+          <option value="">Select a Service</option>
+          <option>Website Development</option>
+          <option>Custom Software Development</option>
+          <option>AI & Automation</option>
+          <option>Mobile Application</option>
+          <option>UI/UX Design</option>
+          <option>Maintenance & Support</option>
+        </select>
+
+        <select name="Budget" required>
+          <option value="">Select Your Budget</option>
+          <option>Below ₹5,000</option>
+          <option>₹5,000 – ₹15,000</option>
+          <option>₹15,000 – ₹50,000</option>
+          <option>₹50,000 – ₹1,00,000</option>
+          <option>Above ₹1,00,000</option>
+          <option>Not decided yet</option>
+        </select>
+
+        <textarea name="Project Details"
+          placeholder="Describe your project and requirements..."
+          rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Submit Project Enquiry
+      </button>
+    </form>
+  </div>
+</section>
+
+<style>
+.enquiry-form {
+  max-width: 750px;
+  margin: 35px auto 0;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #303a55;
+  border-radius: 10px;
+  background: #10172b;
+  color: white;
+  font: inherit;
+}
+.enquiry-form textarea {
+  grid-column: 1 / -1;
+  resize: vertical;
+}
+.enquiry-form input::placeholder,
+.enquiry-form textarea::placeholder {
+  color: #a0a8bb;
+}
+.enquiry-form button {
+  margin-top: 20px;
+  cursor: pointer;
+}
+@media(max-width:600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .enquiry-form textarea {
+    grid-column: auto;
+  }
+}
+</style>
+
+
 </main>
 
 <footer>
