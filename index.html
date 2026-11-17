@@ -385,6 +385,138 @@
 
     .cta p { color: var(--muted); margin-bottom: 28px; }
 
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .choice-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 10, 19, 0.75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 200;
+    }
+
+    .choice-modal.show {
+      display: flex;
+      animation: modal-backdrop-in .2s ease-out;
+    }
+
+    .choice-panel {
+      width: min(760px, 100%);
+      background: #0d1426;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.35);
+      animation: modal-panel-in .25s ease-out;
+    }
+
+    @keyframes modal-backdrop-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes modal-panel-in {
+      from { opacity: 0; transform: translateY(12px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .choice-option:focus-visible,
+    .choice-close:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .choice-modal.show,
+      .choice-panel {
+        animation: none;
+      }
+    }
+
+    .choice-panel h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(24px, 4vw, 34px);
+      margin-bottom: 8px;
+    }
+
+    .choice-panel p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    @media(max-width: 560px) {
+      .choice-panel { padding: 22px; }
+      .choice-grid { grid-template-columns: 1fr; }
+    }
+
+    .choice-option {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: white;
+      padding: 18px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: .25s ease;
+      font-weight: 600;
+    }
+
+    .choice-option:hover {
+      border-color: rgba(128,104,255,.7);
+      transform: translateY(-2px);
+    }
+
+    .choice-close {
+      background: transparent;
+      color: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 28px;
+    }
+
+    .section-heading span {
+      display: inline-block;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(28px, 5vw, 42px);
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
     /* Footer */
 
     footer {
@@ -692,21 +824,42 @@
           Tell us about your project. Let's explore how technology
           can help your business grow.
         </p>
-        <a class="btn btn-primary"
-           href="vexainor.official@gmail.comsubject=VEXAINOR%20Project%20Enquiry">
-          Discuss Your Project ↗
-        </a>
-        <a
-  href="https://wa.me/919822203859?text=Hello%20VEXAINOR!%20I%27m%20interested%20in%20your%20services."
-  target="_blank"
-  rel="noopener noreferrer"
-  class="btn btn-primary"
->
-  Chat on WhatsApp
-</a>
+        <div class="cta-actions">
+          <button type="button" class="btn btn-primary" id="openContactChoices">
+            Discuss Your Project ↗
+          </button>
+          <a
+            href="https://wa.me/919822203859?text=Hello%20VEXAINOR!%20I%27m%20interested%20in%20your%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            Chat on WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </section>
+
+  <div class="choice-modal" id="contactChoiceModal" aria-hidden="true">
+    <div class="choice-panel" role="dialog" aria-modal="true" aria-labelledby="contactChoiceTitle">
+      <h3 id="contactChoiceTitle">Choose your interest</h3>
+      <p>Select what you want to build and we will continue the conversation in your preferred channel.</p>
+
+      <div class="choice-grid">
+        <button type="button" class="choice-option" data-interest="Website Development" data-channel="whatsapp">Website Development</button>
+        <button type="button" class="choice-option" data-interest="Custom Software Development" data-channel="whatsapp">Custom Software</button>
+        <button type="button" class="choice-option" data-interest="AI & Automation" data-channel="whatsapp">AI & Automation</button>
+        <button type="button" class="choice-option" data-interest="Mobile Application" data-channel="whatsapp">Mobile App</button>
+        <button type="button" class="choice-option" data-interest="UI/UX Design" data-channel="whatsapp">UI/UX Design</button>
+        <button type="button" class="choice-option" data-interest="Maintenance & Support" data-channel="whatsapp">Maintenance & Support</button>
+        <button type="button" class="choice-option" data-interest="Custom Idea / General Enquiry" data-channel="email">Email Us</button>
+        <button type="button" class="choice-option" data-interest="Custom Idea / General Enquiry" data-channel="whatsapp">Chat on WhatsApp</button>
+      </div>
+
+      <button type="button" class="choice-close" id="closeContactChoices">Close</button>
+    </div>
+  </div>
 
 <section class="section" id="enquiry">
   <div class="container">
@@ -716,50 +869,40 @@
       <p>Share your requirements and our team will get in touch.</p>
     </div>
 
-    <form
-      action="https://formsubmit.co/vexainor.official@gmail.com"
-      method="POST"
-      class="enquiry-form"
-    >
-      <input type="hidden" name="_subject"
-        value="New VEXAINOR Client Enquiry">
-
-      <input type="text" name="_honey"
-        style="display:none">
+    <form action="https://formsubmit.co/vexainor.official@gmail.com" method="POST" class="enquiry-form" autocomplete="on">
+      <input type="hidden" name="_subject" value="New VEXAINOR Project Enquiry">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_autoresponse" value="Thank you for contacting VEXAINOR! We have received your project enquiry. Our team will review your requirements and get back to you soon.">
+      <input type="text" name="_honey" style="display:none; position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" tabindex="-1" aria-hidden="true">
 
       <div class="form-grid">
-        <input type="text" name="Name"
-          placeholder="Your Full Name" required>
+        <input type="text" name="name" placeholder="Your Full Name" required>
 
-        <input type="email" name="Email"
-          placeholder="Your Email Address" required>
+        <input type="email" name="email" placeholder="Your Email Address" required>
 
-        <input type="tel" name="WhatsApp"
-          placeholder="WhatsApp Number" required>
+        <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required>
 
-        <select name="Service" required>
+        <select name="service" required>
           <option value="">Select a Service</option>
-          <option>Website Development</option>
-          <option>Custom Software Development</option>
-          <option>AI & Automation</option>
-          <option>Mobile Application</option>
-          <option>UI/UX Design</option>
-          <option>Maintenance & Support</option>
+          <option value="Website Development">Website Development</option>
+          <option value="Custom Software Development">Custom Software Development</option>
+          <option value="AI & Automation">AI & Automation</option>
+          <option value="Mobile Application">Mobile Application</option>
+          <option value="UI/UX Design">UI/UX Design</option>
+          <option value="Maintenance & Support">Maintenance & Support</option>
         </select>
 
-        <select name="Budget" required>
+        <select name="budget" required>
           <option value="">Select Your Budget</option>
-          <option>Below ₹5,000</option>
-          <option>₹5,000 – ₹15,000</option>
-          <option>₹15,000 – ₹50,000</option>
-          <option>₹50,000 – ₹1,00,000</option>
-          <option>Above ₹1,00,000</option>
-          <option>Not decided yet</option>
+          <option value="Below ₹5,000">Below ₹5,000</option>
+          <option value="₹5,000 – ₹15,000">₹5,000 – ₹15,000</option>
+          <option value="₹15,000 – ₹50,000">₹15,000 – ₹50,000</option>
+          <option value="₹50,000 – ₹1,00,000">₹50,000 – ₹1,00,000</option>
+          <option value="Above ₹1,00,000">Above ₹1,00,000</option>
+          <option value="Not decided yet">Not decided yet</option>
         </select>
 
-        <textarea name="Project Details"
-          placeholder="Describe your project and requirements..."
-          rows="5" required></textarea>
+        <textarea name="project_details" placeholder="Describe your project and requirements..." rows="5" required></textarea>
       </div>
 
       <button type="submit" class="btn btn-primary">
@@ -830,6 +973,85 @@
 <script>
   const menuBtn = document.getElementById("menuBtn");
   const navLinks = document.getElementById("navLinks");
+  const contactChoiceModal = document.getElementById("contactChoiceModal");
+  const openContactChoicesBtn = document.getElementById("openContactChoices");
+  const closeContactChoicesBtn = document.getElementById("closeContactChoices");
+  let previouslyFocusedElement = null;
+
+  function openContactChoices() {
+    previouslyFocusedElement = document.activeElement;
+    contactChoiceModal.classList.add("show");
+    contactChoiceModal.setAttribute("aria-hidden", "false");
+    const firstOption = contactChoiceModal.querySelector(".choice-option");
+    if (firstOption) {
+      firstOption.focus();
+    }
+  }
+
+  function closeContactChoices() {
+    contactChoiceModal.classList.remove("show");
+    contactChoiceModal.setAttribute("aria-hidden", "true");
+    if (previouslyFocusedElement) {
+      previouslyFocusedElement.focus();
+      previouslyFocusedElement = null;
+    }
+  }
+
+  if (openContactChoicesBtn) {
+    openContactChoicesBtn.addEventListener("click", openContactChoices);
+  }
+
+  if (closeContactChoicesBtn) {
+    closeContactChoicesBtn.addEventListener("click", closeContactChoices);
+  }
+
+  contactChoiceModal.addEventListener("click", (event) => {
+    if (event.target === contactChoiceModal) {
+      closeContactChoices();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!contactChoiceModal.classList.contains("show")) {
+      return;
+    }
+
+    if (event.key === "Escape") {
+      closeContactChoices();
+      return;
+    }
+
+    if (event.key === "Tab") {
+      const focusableElements = contactChoiceModal.querySelectorAll("button");
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    }
+  });
+
+  document.querySelectorAll(".choice-option").forEach(option => {
+    option.addEventListener("click", () => {
+      const interest = option.dataset.interest || "General enquiry";
+      const channel = option.dataset.channel || "whatsapp";
+
+      if (channel === "email") {
+        const emailSubject = encodeURIComponent(`VEXAINOR Project Enquiry - ${interest}`);
+        window.location.href = `mailto:vexainor.official@gmail.com?subject=${emailSubject}&body=${encodeURIComponent(`Hello VEXAINOR,\n\nI am interested in ${interest}.\n\nPlease share more details.`)}`;
+      } else {
+        const message = encodeURIComponent(`Hello VEXAINOR! I am interested in ${interest}. Please tell me more.`);
+        window.open(`https://wa.me/919822203859?text=${message}`, "_blank", "noopener,noreferrer");
+      }
+
+      closeContactChoices();
+    });
+  });
 
   menuBtn.addEventListener("click", () => {
     const isOpen = navLinks.classList.toggle("open");
@@ -845,8 +1067,7 @@
     });
   });
 
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
